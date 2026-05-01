@@ -1,5 +1,5 @@
-#include "pch.h"
 #include "MainWindow.xaml.h"
+#include "pch.h"
 #if __has_include("MainWindow.g.cpp")
 #include "MainWindow.g.cpp"
 #endif
@@ -12,13 +12,13 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::WinUINotes::implementation
 {
-    int32_t MainWindow::MyProperty()
-    {
-        throw hresult_not_implemented();
-    }
-
-    void MainWindow::MyProperty(int32_t /* value */)
-    {
-        throw hresult_not_implemented();
-    }
+int32_t MainWindow::MyProperty()
+{
+    throw hresult_not_implemented();
 }
+
+void MainWindow::MyProperty(int32_t /* value */)
+{
+    throw hresult_not_implemented();
+}
+} // namespace winrt::WinUINotes::implementation
