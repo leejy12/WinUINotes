@@ -2,7 +2,7 @@
 
 #include "Views.NotePage.g.h"
 
-namespace winrt::WinUINotes::implementation
+namespace winrt::WinUINotes::Views::implementation
 {
 struct NotePage : NotePageT<NotePage>
 {
@@ -26,11 +26,11 @@ struct NotePage : NotePageT<NotePage>
     winrt::Windows::Foundation::IAsyncAction DeleteButton_Click(const winrt::Windows::Foundation::IInspectable &sender,
                                                                 const winrt::Microsoft::UI::Xaml::RoutedEventArgs &e);
 };
-} // namespace winrt::WinUINotes::implementation
+} // namespace winrt::WinUINotes::Views::implementation
 
-namespace winrt::WinUINotes::factory_implementation
+namespace winrt::WinUINotes::Views::factory_implementation
 {
 struct NotePage : NotePageT<NotePage, implementation::NotePage>
 {
 };
-} // namespace winrt::WinUINotes::factory_implementation
+} // namespace winrt::WinUINotes::Views::factory_implementation

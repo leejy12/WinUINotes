@@ -12,7 +12,7 @@ using namespace Microsoft::UI::Xaml;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace winrt::WinUINotes::implementation
+namespace winrt::WinUINotes::Views::implementation
 {
 IAsyncAction NotePage::NotePage_Loaded(const IInspectable &sender, const RoutedEventArgs &e)
 {
@@ -43,4 +43,4 @@ IAsyncAction NotePage::DeleteButton_Click(const IInspectable &sender, const Rout
         NoteEditor().Text(L"");
     }
 }
-} // namespace winrt::WinUINotes::implementation
+} // namespace winrt::WinUINotes::Views::implementation
