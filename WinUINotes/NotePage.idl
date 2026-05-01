@@ -1,4 +1,4 @@
-namespace WinUINotes
+namespace WinUINotes.Views
 {
     [default_interface]
     runtimeclass NotePage : Microsoft.UI.Xaml.Controls.Page
