@@ -4,6 +4,5 @@ namespace WinUINotes
     runtimeclass NotePage : Microsoft.UI.Xaml.Controls.Page
     {
         NotePage();
-        Int32 MyProperty;
     }
 }

@@ -19,9 +19,6 @@ struct NotePage : NotePageT<NotePage>
         // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
     }
 
-    int32_t MyProperty();
-    void MyProperty(int32_t value);
-
     winrt::Windows::Foundation::IAsyncAction NotePage_Loaded(winrt::Windows::Foundation::IInspectable const &sender,
                                                              winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e);
     winrt::Windows::Foundation::IAsyncAction SaveButton_Click(const winrt::Windows::Foundation::IInspectable &sender,

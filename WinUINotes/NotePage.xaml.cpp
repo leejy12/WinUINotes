@@ -14,16 +14,6 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::WinUINotes::implementation
 {
-int32_t NotePage::MyProperty()
-{
-    throw hresult_not_implemented();
-}
-
-void NotePage::MyProperty(int32_t /* value */)
-{
-    throw hresult_not_implemented();
-}
-
 IAsyncAction NotePage::NotePage_Loaded(const IInspectable &sender, const RoutedEventArgs &e)
 {
     auto item = co_await storageFolder.TryGetItemAsync(fileName);
