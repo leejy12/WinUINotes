@@ -4,7 +4,7 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="WinUINotes/WinUINotes.vcxproj">
+  <Project Path="WinUINotes/WinUINotes.vcxproj" Id="53ffc029-8ad5-4e6f-b5b4-120ee7dee53c">
     <Deploy />
   </Project>
 </Solution>

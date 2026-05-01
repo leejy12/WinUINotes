@@ -10,6 +10,7 @@
     Title="WinUINotes">
 
     <Grid>
-
+        <Frame x:Name="rootFrame" 
+               SourcePageType="local:NotePage" />
     </Grid>
 </Window>

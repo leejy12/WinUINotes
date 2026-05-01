@@ -1,0 +1,9 @@
+namespace WinUINotes
+{
+    [default_interface]
+    runtimeclass NotePage : Microsoft.UI.Xaml.Controls.Page
+    {
+        NotePage();
+        Int32 MyProperty;
+    }
+}
