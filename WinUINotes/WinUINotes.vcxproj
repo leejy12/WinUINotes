@@ -114,8 +114,8 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NotePage.xaml.h">
-      <DependentUpon>NotePage.xaml</DependentUpon>
+    <ClInclude Include="Views\NotePage.xaml.h">
+      <DependentUpon>Views\NotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="pch.h" />
@@ -129,13 +129,13 @@
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
     <Page Include="MainWindow.xaml" />
-    <Page Include="NotePage.xaml">
+    <Page Include="Views\NotePage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="NotePage.xaml.cpp">
-      <DependentUpon>NotePage.xaml</DependentUpon>
+    <ClCompile Include="Views\NotePage.xaml.cpp">
+      <DependentUpon>Views\NotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="pch.cpp">
@@ -154,8 +154,8 @@
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Midl>
-    <Midl Include="NotePage.idl">
-      <DependentUpon>NotePage.xaml</DependentUpon>
+    <Midl Include="Views\NotePage.idl">
+      <DependentUpon>Views\NotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
   </ItemGroup>
