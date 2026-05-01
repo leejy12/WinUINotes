@@ -1,5 +1,5 @@
-#include "NotePage.xaml.h"
 #include "pch.h"
+#include "NotePage.xaml.h"
 #if __has_include("NotePage.g.cpp")
 #include "NotePage.g.cpp"
 #endif
