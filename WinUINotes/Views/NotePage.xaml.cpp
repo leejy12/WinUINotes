@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "NotePage.xaml.h"
-#if __has_include("Views.NotePage.g.cpp")
-#include "Views.NotePage.g.cpp"
+#if __has_include("Views/NotePage.g.cpp")
+#include "Views/NotePage.g.cpp"
 #endif
 
 using namespace winrt;

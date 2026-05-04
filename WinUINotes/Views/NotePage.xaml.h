@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Views.NotePage.g.h"
+#include "Views/NotePage.g.h"
 
 namespace winrt::WinUINotes::Views::implementation
 {

@@ -37,6 +37,8 @@
     <UseWinUI>true</UseWinUI>
     <WinUISDKReferences>false</WinUISDKReferences>
     <EnableMsixTooling>true</EnableMsixTooling>
+    <CppWinRTVerbosity>high</CppWinRTVerbosity>
+    <CppWinRTUsePrefixes>false</CppWinRTUsePrefixes>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <ItemGroup Label="ProjectConfigurations">
