@@ -10,7 +10,7 @@ using namespace winrt::Windows::Storage;
 
 namespace winrt::WinUINotes::Models::implementation
 {
-AllNotesModel::AllNotesModel()
+AllNotesModel::AllNotesModel() : notes(winrt::single_threaded_observable_vector<winrt::WinUINotes::Models::NoteModel>())
 {
     LoadNotes();
 }
