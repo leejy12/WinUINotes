@@ -4,5 +4,8 @@ namespace WinUINotes.Models
     runtimeclass Note 
     {
         Note();
+        String fileName;
+        String text;
+        Windows.Foundation.DateTime date;
     }
 }
