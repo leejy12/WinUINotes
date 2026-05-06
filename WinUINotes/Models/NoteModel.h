@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Models/Note.g.h"
+#include "Models/NoteModel.g.h"
 
 namespace winrt::WinUINotes::Models::implementation
 {
-struct Note : NoteT<Note>
+struct NoteModel : NoteModelT<NoteModel>
 {
   private:
     winrt::Windows::Storage::StorageFolder storageFolder =
@@ -44,7 +44,7 @@ struct Note : NoteT<Note>
         date = _date; 
     }
 
-    Note();
+    NoteModel();
     winrt::Windows::Foundation::IAsyncAction SaveAsync();
     winrt::Windows::Foundation::IAsyncAction DeleteAsync();
 };
@@ -52,7 +52,7 @@ struct Note : NoteT<Note>
 
 namespace winrt::WinUINotes::Models::factory_implementation
 {
-struct Note : NoteT<Note, implementation::Note>
+struct NoteModel : NoteModelT<NoteModel, implementation::NoteModel>
 {
 };
 } // namespace winrt::WinUINotes::Models::factory_implementation

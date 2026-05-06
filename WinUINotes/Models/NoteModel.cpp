@@ -1,19 +1,19 @@
 #include "pch.h"
-#include "Note.h"
-#if __has_include("Models/Note.g.cpp")
-#include "Models/Note.g.cpp"
+#include "NoteModel.h"
+#if __has_include("Models/NoteModel.g.cpp")
+#include "Models/NoteModel.g.cpp"
 #endif
 
 using namespace winrt::Windows::Storage;
 
 namespace winrt::WinUINotes::Models::implementation
 {
-Note::Note()
+NoteModel::NoteModel()
 {
     fileName = std::format(L"notes-{}.txt", winrt::clock::now().time_since_epoch().count());
 }
 
-winrt::Windows::Foundation::IAsyncAction implementation::Note::SaveAsync()
+winrt::Windows::Foundation::IAsyncAction implementation::NoteModel::SaveAsync()
 {
     IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
     StorageFile noteFile = item.try_as<StorageFile>();
@@ -26,7 +26,7 @@ winrt::Windows::Foundation::IAsyncAction implementation::Note::SaveAsync()
     co_await FileIO::WriteTextAsync(noteFile, text);
 }
 
-winrt::Windows::Foundation::IAsyncAction implementation::Note::DeleteAsync()
+winrt::Windows::Foundation::IAsyncAction implementation::NoteModel::DeleteAsync()
 {
     IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
     StorageFile noteFile = item.try_as<StorageFile>();

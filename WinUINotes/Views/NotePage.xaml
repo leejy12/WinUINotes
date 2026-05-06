@@ -20,11 +20,11 @@
         </Grid.ColumnDefinitions>
 
         <TextBox x:Name="NoteEditor"
-                 Text="{x:Bind NoteModel.Text, Mode=TwoWay}"
+                 Text="{x:Bind Note.Text, Mode=TwoWay}"
                  AcceptsReturn="True"
                  TextWrapping="Wrap"
                  PlaceholderText="Enter your note"
-                 Header="{x:Bind NoteModel.Date}"
+                 Header="{x:Bind Note.Date}"
                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                  Width="400"
                  Grid.Column="1" />

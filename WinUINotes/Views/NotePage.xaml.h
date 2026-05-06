@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Models/Note.h"
+#include "Models/NoteModel.h"
 
 #include "Views/NotePage.g.h"
 
@@ -9,17 +9,17 @@ namespace winrt::WinUINotes::Views::implementation
 struct NotePage : NotePageT<NotePage>
 {
   private:
-    winrt::WinUINotes::Models::Note noteModel;
+    winrt::WinUINotes::Models::NoteModel note;
 
   public:
-    winrt::WinUINotes::Models::Note NoteModel()
+    winrt::WinUINotes::Models::NoteModel Note()
     {
-        return noteModel;
+        return note;
     };
 
-    void NoteModel(const winrt::WinUINotes::Models::Note &_noteModel)
+    void Note(const winrt::WinUINotes::Models::NoteModel &_note)
     {
-        noteModel = _noteModel;
+        note = _note;
     }
 
   public:

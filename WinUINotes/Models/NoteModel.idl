@@ -1,9 +1,9 @@
 namespace WinUINotes.Models
 {
     [default_interface]
-    runtimeclass Note 
+    runtimeclass NoteModel 
     {
-        Note();
+        NoteModel();
         String FileName;
         String Text;
         Windows.Foundation.DateTime Date;
