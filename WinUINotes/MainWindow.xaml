@@ -6,11 +6,12 @@
     xmlns:local="using:WinUINotes"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="using:WinUINotes.Views"
     mc:Ignorable="d"
     Title="WinUINotes">
 
     <Grid>
         <Frame x:Name="rootFrame" 
-               SourcePageType="local:NotePage" />
+               SourcePageType="views:NotePage" />
     </Grid>
 </Window>

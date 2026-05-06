@@ -1,0 +1,14 @@
+namespace WinUINotes.Models
+{
+    [default_interface]
+    runtimeclass NoteModel 
+    {
+        NoteModel();
+        String FileName;
+        String Text;
+        Windows.Foundation.DateTime Date;
+
+        Windows.Foundation.IAsyncAction SaveAsync();
+        Windows.Foundation.IAsyncAction DeleteAsync();
+    }
+}

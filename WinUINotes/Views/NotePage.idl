@@ -1,8 +1,11 @@
-namespace WinUINotes
+import "Models/NoteModel.idl";
+
+namespace WinUINotes.Views
 {
     [default_interface]
     runtimeclass NotePage : Microsoft.UI.Xaml.Controls.Page
     {
+        WinUINotes.Models.NoteModel Note;
         NotePage();
     }
 }
