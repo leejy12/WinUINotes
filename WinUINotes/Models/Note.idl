@@ -1,0 +1,8 @@
+namespace WinUINotes.Models
+{
+    [default_interface]
+    runtimeclass Note 
+    {
+        Note();
+    }
+}

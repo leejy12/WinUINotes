@@ -14,33 +14,14 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::WinUINotes::Views::implementation
 {
-IAsyncAction NotePage::NotePage_Loaded(const IInspectable &sender, const RoutedEventArgs &e)
-{
-    auto item = co_await storageFolder.TryGetItemAsync(fileName);
-    noteFile = item ? std::optional{item.as<StorageFile>()} : std::nullopt;
-
-    if (noteFile.has_value())
-    {
-        NoteEditor().Text(co_await FileIO::ReadTextAsync(noteFile.value()));
-    }
-}
 
 IAsyncAction NotePage::SaveButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
 {
-    if (!noteFile.has_value())
-    {
-        noteFile = co_await storageFolder.CreateFileAsync(fileName, CreationCollisionOption::ReplaceExisting);
-    }
-    co_await FileIO::WriteTextAsync(noteFile.value(), NoteEditor().Text());
+    co_return;
 }
 
 IAsyncAction NotePage::DeleteButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
 {
-    if (noteFile.has_value())
-    {
-        co_await noteFile.value().DeleteAsync();
-        noteFile.reset();
-        NoteEditor().Text(L"");
-    }
+    co_return;
 }
 } // namespace winrt::WinUINotes::Views::implementation

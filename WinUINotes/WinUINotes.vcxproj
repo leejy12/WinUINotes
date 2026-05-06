@@ -116,6 +116,10 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Models\Note.h">
+      <DependentUpon>Models\Note.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="Views\NotePage.xaml.h">
       <DependentUpon>Views\NotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -136,6 +140,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Models\Note.cpp">
+      <DependentUpon>Models\Note.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="Views\NotePage.xaml.cpp">
       <DependentUpon>Views\NotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -155,6 +163,9 @@
     <Midl Include="MainWindow.idl">
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Midl>
+    <Midl Include="Models\Note.idl">
+      <SubType>Designer</SubType>
     </Midl>
     <Midl Include="Views\NotePage.idl">
       <DependentUpon>Views\NotePage.xaml</DependentUpon>
