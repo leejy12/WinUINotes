@@ -10,19 +10,19 @@ namespace winrt::WinUINotes::Models::implementation
 struct AllNotesModel : AllNotesModelT<AllNotesModel>
 {
   private:
-    winrt::Windows::Foundation::Collections::IObservableVector<NoteModel> allNotes;
+    winrt::Windows::Foundation::Collections::IObservableVector<winrt::WinUINotes::Models::NoteModel> allNotes;
 
   public:
     AllNotesModel()
     {
     }
 
-    winrt::Windows::Foundation::Collections::IObservableVector<NoteModel> AllNotes()
+    winrt::Windows::Foundation::Collections::IObservableVector<winrt::WinUINotes::Models::NoteModel> AllNotes()
     {
         return allNotes;
     }
 
-    void AllNotes(const winrt::Windows::Foundation::Collections::IObservableVector<NoteModel> &_allNotes)
+    void AllNotes(const winrt::Windows::Foundation::Collections::IObservableVector<winrt::WinUINotes::Models::NoteModel> &_allNotes)
     {
         allNotes = _allNotes;
     }
