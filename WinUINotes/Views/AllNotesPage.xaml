@@ -9,6 +9,29 @@
     mc:Ignorable="d">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+        <CommandBar DefaultLabelPosition="Right">
+            <AppBarButton Icon="Add" Label="New note" />
+            <CommandBar.Content>
+                <TextBlock Text="Quick notes"
+                           Margin="16,8"
+                           Style="{ThemeResource SubtitleTextBlockStyle}" />
+            </CommandBar.Content>
+        </CommandBar>
+
+        <ItemsView ItemsSource="{x:Bind AllNotes.Notes}"
+                   Grid.Row="1"
+                   Padding="16">
+            <ItemsView.Layout>
+                <UniformGridLayout MinItemWidth="200"
+                                   MinColumnSpacing="12"
+                                   MinRowSpacing="12"
+                                   ItemsJustification="Start" />
+            </ItemsView.Layout>
+        </ItemsView>
     </Grid>
 </Page>
