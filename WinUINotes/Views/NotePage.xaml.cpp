@@ -17,11 +17,19 @@ namespace winrt::WinUINotes::Views::implementation
 
 IAsyncAction NotePage::SaveButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
 {
+    if (noteModel)
+    {
+        noteModel.SaveAsync();
+    }
     co_return;
 }
 
 IAsyncAction NotePage::DeleteButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
 {
+    if (noteModel)
+    {
+        noteModel.DeleteAsync();
+    }
     co_return;
 }
 } // namespace winrt::WinUINotes::Views::implementation

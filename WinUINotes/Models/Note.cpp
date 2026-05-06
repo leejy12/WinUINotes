@@ -10,15 +10,17 @@ namespace winrt::WinUINotes::Models::implementation
 {
 Note::Note()
 {
-    fileName = std::format(L"notes {:%Y-%m-%d %H:%M:%S}.txt", winrt::clock::to_sys(winrt::clock::now()));
+    fileName = std::format(L"notes-{}.txt", winrt::clock::now().time_since_epoch().count());
 }
 
 winrt::Windows::Foundation::IAsyncAction implementation::Note::SaveAsync()
 {
-    StorageFile noteFile = (co_await storageFolder.TryGetItemAsync(fileName)).as<StorageFile>();
+    IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
+    StorageFile noteFile = item.try_as<StorageFile>();
+
     if (!noteFile)
     {
-        storageFolder.CreateFileAsync(fileName, CreationCollisionOption::ReplaceExisting);
+        noteFile = co_await storageFolder.CreateFileAsync(fileName, CreationCollisionOption::ReplaceExisting);
     }
 
     co_await FileIO::WriteTextAsync(noteFile, text);
@@ -26,8 +28,9 @@ winrt::Windows::Foundation::IAsyncAction implementation::Note::SaveAsync()
 
 winrt::Windows::Foundation::IAsyncAction implementation::Note::DeleteAsync()
 {
-    StorageFile noteFile = (co_await storageFolder.TryGetItemAsync(fileName)).as<StorageFile>();
-    if (!noteFile)
+    IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
+    StorageFile noteFile = item.try_as<StorageFile>();
+    if (noteFile)
     {
         co_await noteFile.DeleteAsync();
     }
