@@ -1,0 +1,8 @@
+namespace WinUINotes.Views
+{
+    [default_interface]
+    runtimeclass AllNotesPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        AllNotesPage();
+    }
+}

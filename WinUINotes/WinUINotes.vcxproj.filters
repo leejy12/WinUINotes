@@ -6,6 +6,7 @@
   <ItemGroup>
     <Page Include="MainWindow.xaml" />
     <Page Include="Views\NotePage.xaml" />
+    <Page Include="Views\AllNotesPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
