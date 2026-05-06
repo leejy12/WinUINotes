@@ -5,7 +5,7 @@ namespace WinUINotes.Views
     [default_interface]
     runtimeclass NotePage : Microsoft.UI.Xaml.Controls.Page
     {
-        WinUINotes.Models.Note noteModel;
+        WinUINotes.Models.Note NoteModel;
         NotePage();
     }
 }
