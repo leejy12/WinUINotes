@@ -27,6 +27,9 @@ struct AllNotesPage : AllNotesPageT<AllNotesPage>
     {
         allNotes = _allNotes;
     }
+
+    void NewNoteButton_Click(const winrt::Windows::Foundation::IInspectable &sender,
+                             const winrt::Microsoft::UI::Xaml::RoutedEventArgs &e);
 };
 } // namespace winrt::WinUINotes::Views::implementation
 
