@@ -9,11 +9,40 @@ struct Note : NoteT<Note>
   private:
     winrt::Windows::Storage::StorageFolder storageFolder =
         winrt::Windows::Storage::ApplicationData::Current().LocalFolder();
-
-  public:
     winrt::hstring fileName;
     winrt::hstring text;
     winrt::Windows::Foundation::DateTime date;
+
+  public:
+    winrt::hstring FileName()
+    {
+        return fileName;
+    }
+
+    void FileName(const winrt::hstring &_fileName)
+    {
+        fileName = _fileName;
+    }
+
+    winrt::hstring Text()
+    {
+        return text;
+    }
+
+    void Text(const winrt::hstring &_text)
+    {
+        text = _text;
+    }
+
+    winrt::Windows::Foundation::DateTime Date()
+    {
+        return date;
+    }
+
+    void Date(const winrt::Windows::Foundation::DateTime &_date)
+    {
+        date = _date; 
+    }
 
     Note();
     winrt::Windows::Foundation::IAsyncAction SaveAsync();

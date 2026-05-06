@@ -8,8 +8,19 @@ namespace winrt::WinUINotes::Views::implementation
 {
 struct NotePage : NotePageT<NotePage>
 {
-  public:
+  private:
     winrt::WinUINotes::Models::Note noteModel;
+
+  public:
+    winrt::WinUINotes::Models::Note NoteModel()
+    {
+        return noteModel;
+    };
+
+    void NoteModel(const winrt::WinUINotes::Models::Note &_noteModel)
+    {
+        noteModel = _noteModel;
+    }
 
   public:
     NotePage()
