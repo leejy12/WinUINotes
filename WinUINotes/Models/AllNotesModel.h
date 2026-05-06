@@ -10,21 +10,22 @@ namespace winrt::WinUINotes::Models::implementation
 struct AllNotesModel : AllNotesModelT<AllNotesModel>
 {
   private:
-    winrt::Windows::Foundation::Collections::IObservableVector<winrt::WinUINotes::Models::NoteModel> allNotes;
+    winrt::Windows::Foundation::Collections::IObservableVector<winrt::WinUINotes::Models::NoteModel> notes;
+
+    winrt::Windows::Foundation::IAsyncAction LoadNotes();
+    winrt::Windows::Foundation::IAsyncAction GetFilesInFolderAsync(winrt::Windows::Storage::StorageFolder folder);
 
   public:
-    AllNotesModel()
+    AllNotesModel();
+
+    winrt::Windows::Foundation::Collections::IObservableVector<winrt::WinUINotes::Models::NoteModel> Notes()
     {
+        return notes;
     }
 
-    winrt::Windows::Foundation::Collections::IObservableVector<winrt::WinUINotes::Models::NoteModel> AllNotes()
+    void Notes(const winrt::Windows::Foundation::Collections::IObservableVector<winrt::WinUINotes::Models::NoteModel> &_notes)
     {
-        return allNotes;
-    }
-
-    void AllNotes(const winrt::Windows::Foundation::Collections::IObservableVector<winrt::WinUINotes::Models::NoteModel> &_allNotes)
-    {
-        allNotes = _allNotes;
+        notes = _notes;
     }
 };
 } // namespace winrt::WinUINotes::Models::implementation
