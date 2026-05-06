@@ -11,13 +11,16 @@
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
     <Midl Include="Models\NoteModel.idl" />
+    <Midl Include="Models\AllNotesModel.idl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="Models\AllNotesModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Models\AllNotesModel.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">

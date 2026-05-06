@@ -116,6 +116,7 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Models\AllNotesModel.h" />
     <ClInclude Include="Models\NoteModel.h">
       <DependentUpon>Models\NoteModel.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -147,6 +148,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Models\AllNotesModel.cpp" />
     <ClCompile Include="Models\NoteModel.cpp">
       <DependentUpon>Models\NoteModel.idl</DependentUpon>
       <SubType>Code</SubType>
@@ -175,6 +177,7 @@
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Midl>
+    <Midl Include="Models\AllNotesModel.idl" />
     <Midl Include="Models\NoteModel.idl">
       <SubType>Designer</SubType>
     </Midl>
