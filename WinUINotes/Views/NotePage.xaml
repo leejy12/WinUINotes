@@ -24,7 +24,7 @@
                  AcceptsReturn="True"
                  TextWrapping="Wrap"
                  PlaceholderText="Enter your note"
-                 Header="{x:Bind Note.Date}"
+                 Header="{x:Bind Note.FileName}"
                  ScrollViewer.VerticalScrollBarVisibility="Auto"
                  Width="400"
                  Grid.Column="1" />
