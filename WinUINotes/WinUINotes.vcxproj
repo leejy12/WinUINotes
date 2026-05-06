@@ -116,8 +116,13 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Models\AllNotesModel.h" />
     <ClInclude Include="Models\NoteModel.h">
       <DependentUpon>Models\NoteModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="Views\AllNotesPage.xaml.h">
+      <DependentUpon>Views\AllNotesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="Views\NotePage.xaml.h">
@@ -135,13 +140,21 @@
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
     <Page Include="MainWindow.xaml" />
+    <Page Include="Views\AllNotesPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\NotePage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Models\AllNotesModel.cpp" />
     <ClCompile Include="Models\NoteModel.cpp">
       <DependentUpon>Models\NoteModel.idl</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="Views\AllNotesPage.xaml.cpp">
+      <DependentUpon>Views\AllNotesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="Views\NotePage.xaml.cpp">
@@ -164,8 +177,13 @@
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Midl>
+    <Midl Include="Models\AllNotesModel.idl" />
     <Midl Include="Models\NoteModel.idl">
       <SubType>Designer</SubType>
+    </Midl>
+    <Midl Include="Views\AllNotesPage.idl">
+      <DependentUpon>Views\AllNotesPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Midl>
     <Midl Include="Views\NotePage.idl">
       <DependentUpon>Views\NotePage.xaml</DependentUpon>

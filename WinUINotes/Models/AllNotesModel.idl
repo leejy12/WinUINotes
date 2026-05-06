@@ -1,0 +1,11 @@
+import "Models/NoteModel.idl";
+
+namespace WinUINotes.Models
+{
+    [default_interface]
+    runtimeclass AllNotesModel 
+    {
+        AllNotesModel();
+        Windows.Foundation.Collections.IObservableVector<NoteModel> Notes;
+    }
+}

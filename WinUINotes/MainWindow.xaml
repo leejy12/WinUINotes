@@ -12,6 +12,6 @@
 
     <Grid>
         <Frame x:Name="rootFrame" 
-               SourcePageType="views:NotePage" />
+               SourcePageType="views:AllNotesPage" />
     </Grid>
 </Window>
