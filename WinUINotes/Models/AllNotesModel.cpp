@@ -7,6 +7,7 @@
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Foundation::Collections;
 using namespace winrt::Windows::Storage;
+using namespace winrt::Windows::Storage::FileProperties;
 
 namespace winrt::WinUINotes::Models::implementation
 {
@@ -24,8 +25,31 @@ IAsyncAction AllNotesModel::LoadNotes()
 
 IAsyncAction AllNotesModel::GetFilesInFolderAsync(StorageFolder folder)
 {
-    const IVectorView<StorageFile> files = co_await folder.GetFilesAsync();
+    struct FileAndModifiedDate
+    {
+        StorageFile file;
+        DateTime modifiedDate;
+    };
+
+    IVectorView<StorageFile> files = co_await folder.GetFilesAsync();
+
+    std::vector<FileAndModifiedDate> sortableFiles;
+    sortableFiles.reserve(files.Size());
+
     for (const StorageFile &file : files)
+    {
+        const BasicProperties properties = co_await file.GetBasicPropertiesAsync();
+        sortableFiles.push_back({
+            .file = file,
+            .modifiedDate = properties.DateModified(),
+        });
+    }
+
+    std::ranges::sort(sortableFiles, [](const FileAndModifiedDate &f1, const FileAndModifiedDate &f2) {
+        return f1.modifiedDate > f2.modifiedDate;
+    });
+
+    for (const auto &[file, _] : sortableFiles)
     {
         winrt::WinUINotes::Models::NoteModel note;
         note.FileName(file.Name());
