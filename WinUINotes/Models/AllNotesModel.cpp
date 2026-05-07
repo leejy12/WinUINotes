@@ -45,18 +45,18 @@ IAsyncAction AllNotesModel::GetFilesInFolderAsync(StorageFolder folder)
         });
     }
 
-     std::ranges::sort(sortableFiles, [](const FileAndModifiedDate &f1, const FileAndModifiedDate &f2) {
-         return f1.modifiedDate > f2.modifiedDate;
-     });
+    std::ranges::sort(sortableFiles, [](const FileAndModifiedDate &f1, const FileAndModifiedDate &f2) {
+        return f1.modifiedDate > f2.modifiedDate;
+    });
 
-     for (const auto &[file, _] : sortableFiles)
+    for (const auto &[file, _] : sortableFiles)
     {
-         winrt::WinUINotes::Models::NoteModel note;
-         note.FileName(file.Name());
-         note.Text(co_await FileIO::ReadTextAsync(file));
-         note.Date(file.DateCreated());
-         notes.Append(note);
-     }
+        winrt::WinUINotes::Models::NoteModel note;
+        note.FileName(file.Name());
+        note.Text(co_await FileIO::ReadTextAsync(file));
+        note.Date(file.DateCreated());
+        notes.Append(note);
+    }
 }
 
 } // namespace winrt::WinUINotes::Models::implementation
