@@ -10,8 +10,30 @@
     mc:Ignorable="d"
     Title="WinUINotes">
 
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="Base"/>
+    </Window.SystemBackdrop>
+
     <Grid>
-        <Frame x:Name="rootFrame" 
+        <Grid.RowDefinitions>
+            <!-- Title Bar -->
+            <RowDefinition Height="Auto" />
+            <!-- App Content -->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TitleBar x:Name="AppTitleBar"
+                  Title="WinUI Notes"
+                  IsBackButtonVisible="True"
+                  IsBackButtonEnabled="{x:Bind rootFrame.CanGoBack, Mode=OneWay}"
+                  BackRequested="AppTitleBar_BackRequested">
+            <TitleBar.IconSource>
+                <FontIconSource Glyph="&#xF4AA;"/>
+            </TitleBar.IconSource>
+        </TitleBar>
+
+        <!-- App content -->
+        <Frame x:Name="rootFrame" Grid.Row="1"
                SourcePageType="views:AllNotesPage" />
     </Grid>
 </Window>
