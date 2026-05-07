@@ -30,6 +30,10 @@ struct AllNotesPage : AllNotesPageT<AllNotesPage>
 
     void NewNoteButton_Click(const winrt::Windows::Foundation::IInspectable &sender,
                              const winrt::Microsoft::UI::Xaml::RoutedEventArgs &e);
+
+
+    void ItemsView_ItemInvoked(const winrt::Microsoft::UI::Xaml::Controls::ItemsView &sender,
+                               const winrt::Microsoft::UI::Xaml::Controls::ItemsViewItemInvokedEventArgs &args);
 };
 } // namespace winrt::WinUINotes::Views::implementation
 

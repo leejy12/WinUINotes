@@ -33,6 +33,8 @@ struct NotePage : NotePageT<NotePage>
                                                               const winrt::Microsoft::UI::Xaml::RoutedEventArgs &e);
     winrt::Windows::Foundation::IAsyncAction DeleteButton_Click(const winrt::Windows::Foundation::IInspectable &sender,
                                                                 const winrt::Microsoft::UI::Xaml::RoutedEventArgs &e);
+
+    void OnNavigatedTo(const winrt::Microsoft::UI::Xaml::Navigation::NavigationEventArgs &args);
 };
 } // namespace winrt::WinUINotes::Views::implementation
 

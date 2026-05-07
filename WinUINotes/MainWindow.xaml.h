@@ -6,11 +6,9 @@ namespace winrt::WinUINotes::implementation
 {
 struct MainWindow : MainWindowT<MainWindow>
 {
-    MainWindow()
-    {
-        // Xaml objects should not call InitializeComponent during construction.
-        // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
-    }
+    MainWindow();
+    void AppTitleBar_BackRequested(const winrt::Microsoft::UI::Xaml::Controls::TitleBar &sender,
+                                   const winrt::Windows::Foundation::IInspectable &args);
 };
 } // namespace winrt::WinUINotes::implementation
 
