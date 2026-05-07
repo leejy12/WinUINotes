@@ -7,6 +7,7 @@
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Foundation::Collections;
 using namespace winrt::Windows::Storage;
+using namespace winrt::Windows::Storage::FileProperties;
 
 namespace winrt::WinUINotes::Models::implementation
 {
@@ -37,24 +38,25 @@ IAsyncAction AllNotesModel::GetFilesInFolderAsync(StorageFolder folder)
 
     for (const StorageFile &file : files)
     {
+        const BasicProperties properties = co_await file.GetBasicPropertiesAsync();
         sortableFiles.push_back({
             .file = file,
-            .modifiedDate = (co_await file.GetBasicPropertiesAsync()).DateModified(),
+            .modifiedDate = properties.DateModified(),
         });
     }
 
-    std::ranges::sort(sortableFiles, [](const FileAndModifiedDate &f1, const FileAndModifiedDate &f2) {
-        return f1.modifiedDate > f2.modifiedDate;
-    });
+     std::ranges::sort(sortableFiles, [](const FileAndModifiedDate &f1, const FileAndModifiedDate &f2) {
+         return f1.modifiedDate > f2.modifiedDate;
+     });
 
-    for (const auto &[file, _] : sortableFiles)
+     for (const auto &[file, _] : sortableFiles)
     {
-        winrt::WinUINotes::Models::NoteModel note;
-        note.FileName(file.Name());
-        note.Text(co_await FileIO::ReadTextAsync(file));
-        note.Date(file.DateCreated());
-        notes.Append(note);
-    }
+         winrt::WinUINotes::Models::NoteModel note;
+         note.FileName(file.Name());
+         note.Text(co_await FileIO::ReadTextAsync(file));
+         note.Date(file.DateCreated());
+         notes.Append(note);
+     }
 }
 
 } // namespace winrt::WinUINotes::Models::implementation
