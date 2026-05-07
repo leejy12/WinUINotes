@@ -10,6 +10,7 @@
 
     <Grid Padding="16" RowSpacing="8">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -19,20 +20,26 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <TextBox Text="{x:Bind Note.Title, Mode=TwoWay}"
+                 Grid.Column="1" 
+                 FontWeight="Bold"
+                 MaxLength="30" />
+
         <TextBox x:Name="NoteEditor"
+                 Grid.Row="1"
+                 Grid.Column="1"
                  Text="{x:Bind Note.Text, Mode=TwoWay}"
                  AcceptsReturn="True"
                  TextWrapping="Wrap"
                  PlaceholderText="Enter your note"
                  Header="{x:Bind Note.DateText}"
                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                 Width="400"
-                 Grid.Column="1" />
+                 Width="400" />
 
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     Spacing="4"
-                    Grid.Row="1" Grid.Column="1">
+                    Grid.Row="2" Grid.Column="1">
             <Button Content="Save"
                     Style="{StaticResource AccentButtonStyle}"
                     Click="SaveButton_Click" />
