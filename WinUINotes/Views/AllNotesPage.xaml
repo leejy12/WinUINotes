@@ -30,8 +30,7 @@
                     <Border Grid.Row="1"
                             Padding="8,6,0,6"
                             Background="{ThemeResource SubtleFillColorSecondaryBrush}">
-                        <!-- TODO: Change to Date -->
-                        <TextBlock Text="{x:Bind FileName}"
+                        <TextBlock Text="{x:Bind DateText}"
                                    Style="{StaticResource CaptionTextBlockStyle}"
                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                     </Border>

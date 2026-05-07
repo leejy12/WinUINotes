@@ -5,6 +5,7 @@
 #endif
 
 using namespace winrt::Windows::Storage;
+using namespace winrt::Windows::Globalization::DateTimeFormatting;
 
 namespace winrt::WinUINotes::Models::implementation
 {
@@ -34,5 +35,11 @@ winrt::Windows::Foundation::IAsyncAction implementation::NoteModel::DeleteAsync(
     {
         co_await noteFile.DeleteAsync();
     }
+}
+
+winrt::hstring NoteModel::DateText() const
+{
+    const DateTimeFormatter formatter(L"shortdate shorttime");
+    return formatter.Format(date);
 }
 } // namespace winrt::WinUINotes::Models::implementation
