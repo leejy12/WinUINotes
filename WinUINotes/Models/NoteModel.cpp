@@ -12,11 +12,20 @@ namespace winrt::WinUINotes::Models::implementation
 {
 NoteModel::NoteModel()
 {
-    fileName = std::format(L"notes-{}.txt", winrt::clock::now().time_since_epoch().count());
+    if (fileName.empty())
+    {
+        date = winrt::clock::now();
+    }
 }
 
 IAsyncAction NoteModel::SaveAsync()
 {
+    // Saving a note for the first time.
+    if (fileName.empty())
+    {
+        fileName = std::format(L"notes-{}.txt", winrt::clock::now().time_since_epoch().count());
+    }
+
     IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
     StorageFile noteFile = item.try_as<StorageFile>();
 
