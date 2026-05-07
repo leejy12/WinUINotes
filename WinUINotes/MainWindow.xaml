@@ -25,7 +25,7 @@
         <TitleBar x:Name="AppTitleBar"
                   Title="WinUI Notes"
                   IsBackButtonVisible="True"
-                  IsBackButtonEnabled="{x:Bind rootFrame.CanGoBack}"
+                  IsBackButtonEnabled="{x:Bind rootFrame.CanGoBack, Mode=OneWay}"
                   BackRequested="AppTitleBar_BackRequested">
             <TitleBar.IconSource>
                 <FontIconSource Glyph="&#xF4AA;"/>
