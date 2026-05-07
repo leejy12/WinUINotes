@@ -4,6 +4,7 @@
 #include "Models/NoteModel.g.cpp"
 #endif
 
+using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Storage;
 using namespace winrt::Windows::Globalization::DateTimeFormatting;
 
@@ -14,7 +15,7 @@ NoteModel::NoteModel()
     fileName = std::format(L"notes-{}.txt", winrt::clock::now().time_since_epoch().count());
 }
 
-winrt::Windows::Foundation::IAsyncAction implementation::NoteModel::SaveAsync()
+IAsyncAction NoteModel::SaveAsync()
 {
     IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
     StorageFile noteFile = item.try_as<StorageFile>();
@@ -27,7 +28,7 @@ winrt::Windows::Foundation::IAsyncAction implementation::NoteModel::SaveAsync()
     co_await FileIO::WriteTextAsync(noteFile, text);
 }
 
-winrt::Windows::Foundation::IAsyncAction implementation::NoteModel::DeleteAsync()
+IAsyncAction NoteModel::DeleteAsync()
 {
     IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
     StorageFile noteFile = item.try_as<StorageFile>();
