@@ -7,8 +7,6 @@ namespace winrt::WinUINotes::Models::implementation
 struct NoteModel : NoteModelT<NoteModel>
 {
   private:
-    winrt::Windows::Storage::StorageFolder storageFolder =
-        winrt::Windows::Storage::ApplicationData::Current().LocalFolder();
     winrt::hstring fileName;
     winrt::hstring title;
     winrt::hstring text;
@@ -56,8 +54,6 @@ struct NoteModel : NoteModelT<NoteModel>
     }
 
     NoteModel();
-    winrt::Windows::Foundation::IAsyncAction SaveAsync();
-    winrt::Windows::Foundation::IAsyncAction DeleteAsync();
     winrt::hstring DateText() const;
 };
 } // namespace winrt::WinUINotes::Models::implementation

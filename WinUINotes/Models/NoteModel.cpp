@@ -7,6 +7,8 @@
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Storage;
 using namespace winrt::Windows::Globalization::DateTimeFormatting;
+using namespace winrt::Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml::Controls;
 
 namespace winrt::WinUINotes::Models::implementation
 {
@@ -15,37 +17,6 @@ NoteModel::NoteModel()
     if (fileName.empty())
     {
         date = winrt::clock::now();
-    }
-}
-
-IAsyncAction NoteModel::SaveAsync()
-{
-    // Saving a note for the first time.
-    if (fileName.empty())
-    {
-        fileName = std::format(L"notes-{}.txt", winrt::clock::now().time_since_epoch().count());
-    }
-
-    IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
-    StorageFile noteFile = item.try_as<StorageFile>();
-
-    if (!noteFile)
-    {
-        noteFile = co_await storageFolder.CreateFileAsync(fileName, CreationCollisionOption::ReplaceExisting);
-    }
-
-    co_await FileIO::WriteTextAsync(noteFile, title);
-    co_await FileIO::AppendTextAsync(noteFile, L"\r");
-    co_await FileIO::AppendTextAsync(noteFile, text);
-}
-
-IAsyncAction NoteModel::DeleteAsync()
-{
-    IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
-    StorageFile noteFile = item.try_as<StorageFile>();
-    if (noteFile)
-    {
-        co_await noteFile.DeleteAsync();
     }
 }
 
