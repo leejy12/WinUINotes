@@ -21,6 +21,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBox Text="{x:Bind Note.Title, Mode=TwoWay}"
+                 PlaceholderText="Title"
                  Grid.Column="1" 
                  FontWeight="Bold"
                  MaxLength="30" />
