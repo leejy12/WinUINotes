@@ -41,6 +41,7 @@ IAsyncAction NotePage::SaveButton_Click(const IInspectable &sender, const Routed
     {
         fileName = std::format(L"notes-{}.txt", winrt::clock::now().time_since_epoch().count());
     }
+    note.FileName(fileName);
 
     IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
     StorageFile noteFile = item.try_as<StorageFile>();
