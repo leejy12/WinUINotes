@@ -10,6 +10,8 @@ struct NotePage : NotePageT<NotePage>
 {
   private:
     winrt::WinUINotes::Models::NoteModel note;
+    winrt::Windows::Storage::StorageFolder storageFolder =
+        winrt::Windows::Storage::ApplicationData::Current().LocalFolder();
 
   public:
     winrt::WinUINotes::Models::NoteModel Note()
