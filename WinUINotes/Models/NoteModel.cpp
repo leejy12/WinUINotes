@@ -34,7 +34,9 @@ IAsyncAction NoteModel::SaveAsync()
         noteFile = co_await storageFolder.CreateFileAsync(fileName, CreationCollisionOption::ReplaceExisting);
     }
 
-    co_await FileIO::WriteTextAsync(noteFile, text);
+    co_await FileIO::WriteTextAsync(noteFile, title);
+    co_await FileIO::AppendTextAsync(noteFile, L"\r");
+    co_await FileIO::AppendTextAsync(noteFile, text);
 }
 
 IAsyncAction NoteModel::DeleteAsync()

@@ -13,27 +13,43 @@
         <DataTemplate x:Key="NoteItemTemplate"
                       x:DataType="models:NoteModel">
 
-            <ItemContainer CornerRadius="{StaticResource OverlayCornerRadius}">
-                <Grid Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                      BorderThickness="1" 
-                      BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                      CornerRadius="{StaticResource OverlayCornerRadius}">
+            <ItemContainer>
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="120" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <TextBlock Text="{x:Bind Text}"
-                               Margin="12,8"
-                               TextWrapping="Wrap"
+
+                    <TextBlock Grid.Row="0"
+                               Margin="4"
+                               Text="{x:Bind Title}" 
+                               FontSize="20"
                                TextTrimming="WordEllipsis" />
 
-                    <Border Grid.Row="1"
-                            Padding="8,6,0,6"
-                            Background="{ThemeResource SubtleFillColorSecondaryBrush}">
-                        <TextBlock Text="{x:Bind DateText}"
-                                   Style="{StaticResource CaptionTextBlockStyle}"
-                                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-                    </Border>
+                    <Grid Grid.Row="1"
+                          Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                          BorderThickness="1" 
+                          BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                          CornerRadius="{StaticResource OverlayCornerRadius}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="{x:Bind Text}"
+                                   Grid.Row="0"
+                                   Margin="12,8"
+                                   TextWrapping="Wrap"
+                                   TextTrimming="WordEllipsis" />
+
+                        <Border Grid.Row="1"
+                                Padding="8,6,0,6"
+                                Background="{ThemeResource SubtleFillColorSecondaryBrush}">
+                            <TextBlock Text="{x:Bind DateText}"
+                                       Style="{StaticResource CaptionTextBlockStyle}"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </Border>
+                    </Grid>
                 </Grid>
             </ItemContainer>
         </DataTemplate>

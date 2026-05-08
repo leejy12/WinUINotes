@@ -10,6 +10,7 @@ struct NoteModel : NoteModelT<NoteModel>
     winrt::Windows::Storage::StorageFolder storageFolder =
         winrt::Windows::Storage::ApplicationData::Current().LocalFolder();
     winrt::hstring fileName;
+    winrt::hstring title;
     winrt::hstring text;
     winrt::Windows::Foundation::DateTime date;
 
@@ -22,6 +23,16 @@ struct NoteModel : NoteModelT<NoteModel>
     void FileName(const winrt::hstring &_fileName)
     {
         fileName = _fileName;
+    }
+
+    winrt::hstring Title()
+    {
+        return title;
+    }
+
+    void Title(const winrt::hstring &_title)
+    {
+        title = _title;
     }
 
     winrt::hstring Text()

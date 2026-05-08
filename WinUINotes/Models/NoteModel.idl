@@ -5,6 +5,7 @@ namespace WinUINotes.Models
     {
         NoteModel();
         String FileName;
+        String Title;
         String Text;
         Windows.Foundation.DateTime Date;
         String DateText { get; };

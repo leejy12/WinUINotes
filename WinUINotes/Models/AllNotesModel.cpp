@@ -52,8 +52,21 @@ IAsyncAction AllNotesModel::GetFilesInFolderAsync(StorageFolder folder)
     for (const auto &[file, _] : sortableFiles)
     {
         winrt::WinUINotes::Models::NoteModel note;
+        const winrt::hstring contents = co_await FileIO::ReadTextAsync(file);
+
+        // TextBox internally uses RichEdit to implement all of the complex textbox behavior,
+        // and the default behavior of RichEdit is to use just CR at line breaks
+        // https://github.com/microsoft/microsoft-ui-xaml/discussions/9545#discussioncomment-9125200
+        std::wstring_view sv = static_cast<std::wstring_view>(contents);
+        const std::size_t cr = sv.find(L'\r');
+
+        // The first line is the title.
+        const winrt::hstring title(sv.data(), cr);
+        const winrt::hstring text(sv.data() + cr + 1);
+
         note.FileName(file.Name());
-        note.Text(co_await FileIO::ReadTextAsync(file));
+        note.Title(title);
+        note.Text(text);
         note.Date(file.DateCreated());
         notes.Append(note);
     }
