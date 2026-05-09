@@ -55,6 +55,8 @@ struct NoteModel : NoteModelT<NoteModel>
 
     NoteModel();
     winrt::hstring DateText() const;
+    winrt::Windows::Foundation::IAsyncAction SaveAsync();
+    winrt::Windows::Foundation::IAsyncAction DeleteAsync();
 };
 } // namespace winrt::WinUINotes::Models::implementation
 

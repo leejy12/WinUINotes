@@ -8,6 +8,7 @@
 // conflict with Storyboard::GetCurrentTime
 #undef GetCurrentTime
 
+#include <format>
 #include <ranges>
 
 #include <winrt/Windows.Foundation.h>

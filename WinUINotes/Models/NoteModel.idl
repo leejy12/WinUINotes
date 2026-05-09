@@ -9,5 +9,7 @@ namespace WinUINotes.Models
         String Text;
         Windows.Foundation.DateTime Date;
         String DateText { get; };
+        Windows.Foundation.IAsyncAction SaveAsync();
+        Windows.Foundation.IAsyncAction DeleteAsync();
     }
 }
