@@ -19,7 +19,7 @@
                         <MenuFlyoutItem Text="Delete" 
                                         Foreground="Red"
                                         Click="NoteMenuFlyoutItem_Click"
-                                        Tag="{x:Bind FileName}">
+                                        Tag="{x:Bind}">
                             <MenuFlyoutItem.Icon>
                                 <FontIcon Glyph="&#xE74D;" />
                             </MenuFlyoutItem.Icon>

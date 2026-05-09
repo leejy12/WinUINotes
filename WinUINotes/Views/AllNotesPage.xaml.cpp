@@ -5,6 +5,7 @@
 #endif
 
 using namespace winrt::Windows::Foundation;
+using namespace winrt::Windows::Storage;
 using namespace winrt::Microsoft::UI::Xaml;
 using namespace winrt::Microsoft::UI::Xaml::Controls;
 using namespace winrt::WinUINotes::Models;
@@ -24,16 +25,22 @@ void AllNotesPage::ItemsView_ItemInvoked(const ItemsView &sender, const ItemsVie
     Frame().Navigate(winrt::xaml_typename<NotePage>(), args.InvokedItem());
 }
 
-void AllNotesPage::NoteMenuFlyoutItem_Click(const IInspectable &sender, const RoutedEventArgs &e)
+IAsyncAction AllNotesPage::NoteMenuFlyoutItem_Click(const IInspectable &sender, const RoutedEventArgs &e)
 {
     const MenuFlyoutItem item = sender.as<MenuFlyoutItem>();
-    const winrt::hstring fileName = item.Tag().as<winrt::hstring>();
-    const auto &notes = allNotes.Notes();
-    const auto it = std::ranges::find_if(notes, [&fileName](const NoteModel &n) { return n.FileName() == fileName; });
-    const std::uint32_t idx = static_cast<std::uint32_t>(std::distance(notes.begin(), it));
-    notes.RemoveAt(idx);
+    const NoteModel note = item.Tag().as<NoteModel>();
+    IStorageItem storageItem = co_await ApplicationData::Current().LocalFolder().TryGetItemAsync(note.FileName());
+    if (const StorageFile noteFile = storageItem.try_as<StorageFile>())
+    {
+        co_await noteFile.DeleteAsync();
+    }
 
-    // TODO: Actually delete the file.
+    const auto &notes = allNotes.Notes();
+    std::uint32_t idx = 0;
+    if (notes.IndexOf(note, idx))
+    {
+        notes.RemoveAt(idx);
+    }
 }
 
 } // namespace winrt::WinUINotes::Views::implementation

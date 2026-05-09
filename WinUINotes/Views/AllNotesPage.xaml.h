@@ -34,8 +34,8 @@ struct AllNotesPage : AllNotesPageT<AllNotesPage>
     void ItemsView_ItemInvoked(const winrt::Microsoft::UI::Xaml::Controls::ItemsView &sender,
                                const winrt::Microsoft::UI::Xaml::Controls::ItemsViewItemInvokedEventArgs &args);
 
-    void NoteMenuFlyoutItem_Click(const winrt::Windows::Foundation::IInspectable &sender,
-                                  const winrt::Microsoft::UI::Xaml::RoutedEventArgs &e);
+    winrt::Windows::Foundation::IAsyncAction NoteMenuFlyoutItem_Click(
+        const winrt::Windows::Foundation::IInspectable &sender, const winrt::Microsoft::UI::Xaml::RoutedEventArgs &e);
 };
 } // namespace winrt::WinUINotes::Views::implementation
 
