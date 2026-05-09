@@ -54,6 +54,8 @@ void AllNotesModel::UpsertCachedNote(const winrt::WinUINotes::Models::NoteModel 
         notes.RemoveAt(idx);
     }
 
+    // Insert at the first position, because the note's modified date
+    // will be the latest.
     notes.InsertAt(0, note);
 }
 
