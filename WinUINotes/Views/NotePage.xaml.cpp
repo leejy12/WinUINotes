@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "NotePage.xaml.h"
+#include "Models/AllNotesModel.h"
 #if __has_include("Views/NotePage.g.cpp")
 #include "Views/NotePage.g.cpp"
 #endif
@@ -54,6 +55,8 @@ IAsyncAction NotePage::SaveButton_Click(const IInspectable &sender, const Routed
     co_await FileIO::WriteTextAsync(noteFile, note.Title());
     co_await FileIO::AppendTextAsync(noteFile, L"\r");
     co_await FileIO::AppendTextAsync(noteFile, note.Text());
+
+    winrt::WinUINotes::Models::implementation::AllNotesModel::UpsertCachedNote(note);
 }
 
 IAsyncAction NotePage::DeleteButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
@@ -65,6 +68,8 @@ IAsyncAction NotePage::DeleteButton_Click(const IInspectable &sender, const Rout
     {
         co_await noteFile.DeleteAsync();
     }
+
+    winrt::WinUINotes::Models::implementation::AllNotesModel::RemoveCachedNote(note.FileName());
 
     if (Frame().CanGoBack())
     {

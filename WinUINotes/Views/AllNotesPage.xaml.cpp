@@ -37,12 +37,7 @@ IAsyncAction AllNotesPage::NoteMenuFlyoutItem_Click(const IInspectable &sender, 
         co_await noteFile.DeleteAsync();
     }
 
-    const auto &notes = allNotes.Notes();
-    std::uint32_t idx = 0;
-    if (notes.IndexOf(note, idx))
-    {
-        notes.RemoveAt(idx);
-    }
+    winrt::WinUINotes::Models::implementation::AllNotesModel::RemoveCachedNote(note.FileName());
 }
 
 } // namespace winrt::WinUINotes::Views::implementation
