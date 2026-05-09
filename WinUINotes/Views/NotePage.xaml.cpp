@@ -13,13 +13,27 @@ using namespace Microsoft::UI::Xaml::Controls;
 using namespace Microsoft::UI::Xaml::Navigation;
 using namespace WinUINotes::Models;
 
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
+namespace
+{
 bool HasNoContent(const winrt::hstring &str)
 {
     return str.empty() || std::ranges::all_of(str, [](wchar_t c) { return c == L' '; });
 }
+
+NoteModel CloneNoteModel(const NoteModel &source)
+{
+    NoteModel clone;
+    clone.FileName(source.FileName());
+    clone.Title(source.Title());
+    clone.Text(source.Text());
+    clone.Date(source.Date());
+
+    return clone;
+}
+} // namespace
+
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace winrt::WinUINotes::Views::implementation
 {
@@ -84,7 +98,7 @@ void NotePage::OnNavigatedTo(const NavigationEventArgs &args)
     const NoteModel noteModel = args.Parameter().try_as<NoteModel>();
     if (noteModel)
     {
-        note = noteModel;
+        note = CloneNoteModel(noteModel);
     }
 }
 } // namespace winrt::WinUINotes::Views::implementation

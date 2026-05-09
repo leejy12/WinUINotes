@@ -9,6 +9,20 @@ using namespace winrt::Windows::Foundation::Collections;
 using namespace winrt::Windows::Storage;
 using namespace winrt::Windows::Storage::FileProperties;
 
+namespace
+{
+winrt::WinUINotes::Models::NoteModel CloneNoteModel(const winrt::WinUINotes::Models::NoteModel &source)
+{
+    winrt::WinUINotes::Models::NoteModel clone;
+    clone.FileName(source.FileName());
+    clone.Title(source.Title());
+    clone.Text(source.Text());
+    clone.Date(source.Date());
+
+    return clone;
+}
+} // namespace
+
 namespace winrt::WinUINotes::Models::implementation
 {
 AllNotesModel::AllNotesModel() : notes(CachedNotes())
@@ -56,7 +70,7 @@ void AllNotesModel::UpsertCachedNote(const winrt::WinUINotes::Models::NoteModel 
 
     // Insert at the first position, because the note's modified date
     // will be the latest.
-    notes.InsertAt(0, note);
+    notes.InsertAt(0, CloneNoteModel(note));
 }
 
 void AllNotesModel::RemoveCachedNote(const winrt::hstring &fileName)
