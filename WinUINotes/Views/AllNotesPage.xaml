@@ -14,6 +14,18 @@
                       x:DataType="models:NoteModel">
 
             <ItemContainer>
+                <ItemContainer.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Delete" 
+                                        Foreground="Red"
+                                        Click="NoteMenuFlyoutItem_Click"
+                                        Tag="{x:Bind}">
+                            <MenuFlyoutItem.Icon>
+                                <FontIcon Glyph="&#xE74D;" />
+                            </MenuFlyoutItem.Icon>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </ItemContainer.ContextFlyout>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
