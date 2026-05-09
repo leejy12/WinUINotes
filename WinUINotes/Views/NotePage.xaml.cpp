@@ -6,7 +6,6 @@
 
 using namespace winrt;
 using namespace Windows::Foundation;
-using namespace Windows::Storage;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::UI::Xaml::Controls;
 using namespace Microsoft::UI::Xaml::Navigation;
@@ -35,36 +34,12 @@ IAsyncAction NotePage::SaveButton_Click(const IInspectable &sender, const Routed
         co_return;
     }
 
-    // Saving a note for the first time.
-    winrt::hstring fileName = note.FileName();
-    if (fileName.empty())
-    {
-        fileName = std::format(L"notes-{}.txt", winrt::clock::now().time_since_epoch().count());
-    }
-    note.FileName(fileName);
-
-    IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
-    StorageFile noteFile = item.try_as<StorageFile>();
-
-    if (!noteFile)
-    {
-        noteFile = co_await storageFolder.CreateFileAsync(fileName, CreationCollisionOption::ReplaceExisting);
-    }
-
-    co_await FileIO::WriteTextAsync(noteFile, note.Title());
-    co_await FileIO::AppendTextAsync(noteFile, L"\r");
-    co_await FileIO::AppendTextAsync(noteFile, note.Text());
+    co_await note.SaveAsync();
 }
 
 IAsyncAction NotePage::DeleteButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
 {
-    IStorageItem item = co_await storageFolder.TryGetItemAsync(note.FileName());
-    StorageFile noteFile = item.try_as<StorageFile>();
-
-    if (noteFile)
-    {
-        co_await noteFile.DeleteAsync();
-    }
+    co_await note.DeleteAsync();
 
     if (Frame().CanGoBack())
     {
