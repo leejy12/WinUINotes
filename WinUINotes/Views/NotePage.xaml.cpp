@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "NotePage.xaml.h"
-#include "Models/AllNotesModel.h"
 #if __has_include("Views/NotePage.g.cpp")
 #include "Views/NotePage.g.cpp"
 #endif
@@ -13,27 +12,13 @@ using namespace Microsoft::UI::Xaml::Controls;
 using namespace Microsoft::UI::Xaml::Navigation;
 using namespace WinUINotes::Models;
 
-namespace
-{
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
+
 bool HasNoContent(const winrt::hstring &str)
 {
     return str.empty() || std::ranges::all_of(str, [](wchar_t c) { return c == L' '; });
 }
-
-NoteModel CloneNoteModel(const NoteModel &source)
-{
-    NoteModel clone;
-    clone.FileName(source.FileName());
-    clone.Title(source.Title());
-    clone.Text(source.Text());
-    clone.Date(source.Date());
-
-    return clone;
-}
-} // namespace
-
-// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace winrt::WinUINotes::Views::implementation
 {
@@ -69,8 +54,6 @@ IAsyncAction NotePage::SaveButton_Click(const IInspectable &sender, const Routed
     co_await FileIO::WriteTextAsync(noteFile, note.Title());
     co_await FileIO::AppendTextAsync(noteFile, L"\r");
     co_await FileIO::AppendTextAsync(noteFile, note.Text());
-
-    winrt::WinUINotes::Models::implementation::AllNotesModel::UpsertCachedNote(note);
 }
 
 IAsyncAction NotePage::DeleteButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
@@ -82,8 +65,6 @@ IAsyncAction NotePage::DeleteButton_Click(const IInspectable &sender, const Rout
     {
         co_await noteFile.DeleteAsync();
     }
-
-    winrt::WinUINotes::Models::implementation::AllNotesModel::RemoveCachedNote(note.FileName());
 
     if (Frame().CanGoBack())
     {
@@ -98,7 +79,7 @@ void NotePage::OnNavigatedTo(const NavigationEventArgs &args)
     const NoteModel noteModel = args.Parameter().try_as<NoteModel>();
     if (noteModel)
     {
-        note = CloneNoteModel(noteModel);
+        note = noteModel;
     }
 }
 } // namespace winrt::WinUINotes::Views::implementation
