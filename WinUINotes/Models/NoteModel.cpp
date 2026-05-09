@@ -31,7 +31,7 @@ IAsyncAction NoteModel::SaveAsync()
 
     if (fileName.empty())
     {
-        fileName = std::format(L"notes-{}.txt", winrt::clock::now().time_since_epoch().count());
+        fileName = std::format(L"notes-{}.txt", date.time_since_epoch().count());
     }
 
     IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
