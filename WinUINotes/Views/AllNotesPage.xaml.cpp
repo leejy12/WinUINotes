@@ -15,12 +15,14 @@ using namespace winrt::WinUINotes::Models;
 
 namespace winrt::WinUINotes::Views::implementation
 {
-void AllNotesPage::NewNoteButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
+void AllNotesPage::NewNoteButton_Click([[maybe_unused]] const IInspectable &sender,
+                                       [[maybe_unused]] const RoutedEventArgs &e)
 {
     Frame().Navigate(winrt::xaml_typename<NotePage>());
 }
 
-void AllNotesPage::ItemsView_ItemInvoked(const ItemsView &sender, const ItemsViewItemInvokedEventArgs &args)
+void AllNotesPage::ItemsView_ItemInvoked([[maybe_unused]] const ItemsView &sender,
+                                         const ItemsViewItemInvokedEventArgs &args)
 {
     Frame().Navigate(winrt::xaml_typename<NotePage>(), args.InvokedItem());
 }

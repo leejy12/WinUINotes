@@ -58,7 +58,7 @@ IAsyncAction AllNotesModel::GetFilesInFolderAsync(StorageFolder folder)
         // and the default behavior of RichEdit is to use just CR at line breaks
         // https://github.com/microsoft/microsoft-ui-xaml/discussions/9545#discussioncomment-9125200
         std::wstring_view sv = static_cast<std::wstring_view>(contents);
-        const std::size_t cr = sv.find(L'\r');
+        const std::uint32_t cr = static_cast<std::uint32_t>(sv.find(L'\r'));
 
         // The first line is the title.
         const winrt::hstring title(sv.data(), cr);

@@ -22,7 +22,8 @@ MainWindow::MainWindow()
     SetTitleBar(AppTitleBar());
 }
 
-void MainWindow::AppTitleBar_BackRequested(const TitleBar &sender, const IInspectable &args)
+void MainWindow::AppTitleBar_BackRequested([[maybe_unused]] const TitleBar &sender,
+                                           [[maybe_unused]] const IInspectable &args)
 {
     if (rootFrame().CanGoBack())
     {
