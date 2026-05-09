@@ -6,6 +6,6 @@ namespace WinUINotes.Models
     runtimeclass AllNotesModel 
     {
         AllNotesModel();
-        Windows.Foundation.Collections.IObservableVector<NoteModel> Notes;
+        Windows.Foundation.Collections.IVector<NoteModel> Notes;
     }
 }
