@@ -45,8 +45,6 @@ IAsyncAction NoteModel::SaveAsync()
     co_await FileIO::WriteTextAsync(noteFile, title);
     co_await FileIO::AppendTextAsync(noteFile, L"\r");
     co_await FileIO::AppendTextAsync(noteFile, text);
-
-    winrt::WinUINotes::Models::implementation::AllNotesModel::UpsertCachedNote(*this);
 }
 
 IAsyncAction NoteModel::DeleteAsync()
@@ -64,7 +62,5 @@ IAsyncAction NoteModel::DeleteAsync()
     {
         co_await noteFile.DeleteAsync();
     }
-
-    winrt::WinUINotes::Models::implementation::AllNotesModel::RemoveCachedNote(fileName);
 }
 } // namespace winrt::WinUINotes::Models::implementation
