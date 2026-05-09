@@ -9,18 +9,87 @@ using namespace winrt::Windows::Foundation::Collections;
 using namespace winrt::Windows::Storage;
 using namespace winrt::Windows::Storage::FileProperties;
 
+namespace
+{
+winrt::WinUINotes::Models::NoteModel CloneNoteModel(const winrt::WinUINotes::Models::NoteModel &source)
+{
+    winrt::WinUINotes::Models::NoteModel clone;
+    clone.FileName(source.FileName());
+    clone.Title(source.Title());
+    clone.Text(source.Text());
+    clone.Date(source.Date());
+
+    return clone;
+}
+} // namespace
+
 namespace winrt::WinUINotes::Models::implementation
 {
-AllNotesModel::AllNotesModel() : notes(winrt::single_threaded_observable_vector<winrt::WinUINotes::Models::NoteModel>())
+AllNotesModel::AllNotesModel() : notes(CachedNotes())
 {
-    LoadNotes();
+    if (!cachedNotesLoaded && !cachedNotesLoading)
+    {
+        LoadNotes();
+    }
+}
+
+IVector<winrt::WinUINotes::Models::NoteModel> AllNotesModel::CachedNotes()
+{
+    if (!cachedNotes)
+    {
+        cachedNotes = winrt::single_threaded_observable_vector<winrt::WinUINotes::Models::NoteModel>();
+    }
+
+    return cachedNotes;
+}
+
+bool AllNotesModel::TryGetCachedNoteIndex(const winrt::hstring &fileName, std::uint32_t &idx)
+{
+    const auto notes = CachedNotes();
+    for (std::uint32_t i = 0; i < notes.Size(); ++i)
+    {
+        if (notes.GetAt(i).FileName() == fileName)
+        {
+            idx = i;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void AllNotesModel::UpsertCachedNote(const winrt::WinUINotes::Models::NoteModel &note)
+{
+    const auto notes = CachedNotes();
+
+    std::uint32_t idx = 0;
+    if (TryGetCachedNoteIndex(note.FileName(), idx))
+    {
+        notes.RemoveAt(idx);
+    }
+
+    // Insert at the first position, because the note's modified date
+    // will be the latest.
+    notes.InsertAt(0, note);
+}
+
+void AllNotesModel::RemoveCachedNote(const winrt::hstring &fileName)
+{
+    std::uint32_t idx = 0;
+    if (TryGetCachedNoteIndex(fileName, idx))
+    {
+        CachedNotes().RemoveAt(idx);
+    }
 }
 
 IAsyncAction AllNotesModel::LoadNotes()
 {
+    cachedNotesLoading = true;
     notes.Clear();
     StorageFolder storageFolder = ApplicationData::Current().LocalFolder();
     co_await GetFilesInFolderAsync(storageFolder);
+    cachedNotesLoaded = true;
+    cachedNotesLoading = false;
 }
 
 IAsyncAction AllNotesModel::GetFilesInFolderAsync(StorageFolder folder)
