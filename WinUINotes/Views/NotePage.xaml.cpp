@@ -17,7 +17,7 @@ using namespace WinUINotes::Models;
 
 bool HasNoContent(const winrt::hstring &str)
 {
-    return str.empty() || std::ranges::all_of(str.begin(), str.end(), [](wchar_t c) { return c == L' '; });
+    return str.empty() || std::ranges::all_of(str, [](wchar_t c) { return c == L' '; });
 }
 
 namespace winrt::WinUINotes::Views::implementation
