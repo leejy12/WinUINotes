@@ -70,7 +70,7 @@ void AllNotesModel::UpsertCachedNote(const winrt::WinUINotes::Models::NoteModel 
 
     // Insert at the first position, because the note's modified date
     // will be the latest.
-    notes.InsertAt(0, CloneNoteModel(note));
+    notes.InsertAt(0, note);
 }
 
 void AllNotesModel::RemoveCachedNote(const winrt::hstring &fileName)
