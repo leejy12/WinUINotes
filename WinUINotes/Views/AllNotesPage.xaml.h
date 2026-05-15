@@ -9,23 +9,13 @@ namespace winrt::WinUINotes::Views::implementation
 struct AllNotesPage : AllNotesPageT<AllNotesPage>
 {
   public:
-    winrt::WinUINotes::Models::AllNotesModel allNotes;
+    wil::single_threaded_rw_property<winrt::WinUINotes::Models::AllNotesModel> AllNotes;
 
   public:
     AllNotesPage()
     {
         // Xaml objects should not call InitializeComponent during construction.
         // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
-    }
-
-    winrt::WinUINotes::Models::AllNotesModel AllNotes()
-    {
-        return allNotes;
-    }
-
-    void AllNotes(const winrt::WinUINotes::Models::AllNotesModel &_allNotes)
-    {
-        allNotes = _allNotes;
     }
 
     void NewNoteButton_Click(const winrt::Windows::Foundation::IInspectable &sender,

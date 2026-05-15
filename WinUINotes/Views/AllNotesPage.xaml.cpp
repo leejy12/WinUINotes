@@ -37,7 +37,7 @@ IAsyncAction AllNotesPage::NoteMenuFlyoutItem_Click(const IInspectable &sender, 
         co_await noteFile.DeleteAsync();
     }
 
-    const auto &notes = allNotes.Notes();
+    const auto notes = AllNotes().Notes();
     std::uint32_t idx = 0;
     if (notes.IndexOf(note, idx))
     {

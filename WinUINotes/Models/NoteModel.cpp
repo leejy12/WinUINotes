@@ -13,49 +13,49 @@ namespace winrt::WinUINotes::Models::implementation
 {
 NoteModel::NoteModel()
 {
-    if (fileName.empty())
+    if (FileName().empty())
     {
-        date = winrt::clock::now();
+        Date = winrt::clock::now();
     }
 }
 
 winrt::hstring NoteModel::DateText() const
 {
     const DateTimeFormatter formatter(L"shortdate shorttime");
-    return formatter.Format(date);
+    return formatter.Format(Date());
 }
 
 IAsyncAction NoteModel::SaveAsync()
 {
     StorageFolder storageFolder = ApplicationData::Current().LocalFolder();
 
-    if (fileName.empty())
+    if (FileName().empty())
     {
-        fileName = std::format(L"notes-{}.txt", date.time_since_epoch().count());
+        FileName = std::format(L"notes-{}.txt", Date().time_since_epoch().count());
     }
 
-    IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
+    IStorageItem item = co_await storageFolder.TryGetItemAsync(FileName());
     StorageFile noteFile = item.try_as<StorageFile>();
 
     if (!noteFile)
     {
-        noteFile = co_await storageFolder.CreateFileAsync(fileName, CreationCollisionOption::ReplaceExisting);
+        noteFile = co_await storageFolder.CreateFileAsync(FileName(), CreationCollisionOption::ReplaceExisting);
     }
 
-    co_await FileIO::WriteTextAsync(noteFile, title);
+    co_await FileIO::WriteTextAsync(noteFile, Title());
     co_await FileIO::AppendTextAsync(noteFile, L"\r");
-    co_await FileIO::AppendTextAsync(noteFile, text);
+    co_await FileIO::AppendTextAsync(noteFile, Text());
 }
 
 IAsyncAction NoteModel::DeleteAsync()
 {
-    if (fileName.empty())
+    if (FileName().empty())
     {
         co_return;
     }
 
     StorageFolder storageFolder = ApplicationData::Current().LocalFolder();
-    IStorageItem item = co_await storageFolder.TryGetItemAsync(fileName);
+    IStorageItem item = co_await storageFolder.TryGetItemAsync(FileName());
     StorageFile noteFile = item.try_as<StorageFile>();
 
     if (noteFile)
