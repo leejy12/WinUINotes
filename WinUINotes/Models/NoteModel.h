@@ -6,52 +6,11 @@ namespace winrt::WinUINotes::Models::implementation
 {
 struct NoteModel : NoteModelT<NoteModel>
 {
-  private:
-    winrt::hstring fileName;
-    winrt::hstring title;
-    winrt::hstring text;
-    winrt::Windows::Foundation::DateTime date;
-
   public:
-    winrt::hstring FileName()
-    {
-        return fileName;
-    }
-
-    void FileName(const winrt::hstring &_fileName)
-    {
-        fileName = _fileName;
-    }
-
-    winrt::hstring Title()
-    {
-        return title;
-    }
-
-    void Title(const winrt::hstring &_title)
-    {
-        title = _title;
-    }
-
-    winrt::hstring Text()
-    {
-        return text;
-    }
-
-    void Text(const winrt::hstring &_text)
-    {
-        text = _text;
-    }
-
-    winrt::Windows::Foundation::DateTime Date()
-    {
-        return date;
-    }
-
-    void Date(const winrt::Windows::Foundation::DateTime &_date)
-    {
-        date = _date; 
-    }
+    wil::single_threaded_rw_property<winrt::hstring> FileName;
+    wil::single_threaded_rw_property<winrt::hstring> Title;
+    wil::single_threaded_rw_property<winrt::hstring> Text;
+    wil::single_threaded_rw_property<winrt::Windows::Foundation::DateTime> Date;
 
     NoteModel();
     winrt::hstring DateText() const;

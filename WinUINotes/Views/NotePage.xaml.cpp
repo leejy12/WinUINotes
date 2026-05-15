@@ -24,7 +24,7 @@ namespace winrt::WinUINotes::Views::implementation
 
 IAsyncAction NotePage::SaveButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
 {
-    if (HasNoContent(note.Title()))
+    if (HasNoContent(Note().Title()))
     {
         ContentDialog dialog;
         dialog.XamlRoot(this->XamlRoot());
@@ -34,12 +34,12 @@ IAsyncAction NotePage::SaveButton_Click(const IInspectable &sender, const Routed
         co_return;
     }
 
-    co_await note.SaveAsync();
+    co_await Note().SaveAsync();
 }
 
 IAsyncAction NotePage::DeleteButton_Click(const IInspectable &sender, const RoutedEventArgs &e)
 {
-    co_await note.DeleteAsync();
+    co_await Note().DeleteAsync();
 
     if (Frame().CanGoBack())
     {
@@ -54,7 +54,7 @@ void NotePage::OnNavigatedTo(const NavigationEventArgs &args)
     const NoteModel noteModel = args.Parameter().try_as<NoteModel>();
     if (noteModel)
     {
-        note = noteModel;
+        Note = noteModel;
     }
 }
 } // namespace winrt::WinUINotes::Views::implementation

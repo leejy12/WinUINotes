@@ -11,14 +11,14 @@ using namespace winrt::Windows::Storage::FileProperties;
 
 namespace winrt::WinUINotes::Models::implementation
 {
-AllNotesModel::AllNotesModel() : notes(winrt::single_threaded_observable_vector<winrt::WinUINotes::Models::NoteModel>())
+AllNotesModel::AllNotesModel() : Notes(winrt::single_threaded_observable_vector<winrt::WinUINotes::Models::NoteModel>())
 {
     LoadNotes();
 }
 
 IAsyncAction AllNotesModel::LoadNotes()
 {
-    notes.Clear();
+    Notes().Clear();
     StorageFolder storageFolder = ApplicationData::Current().LocalFolder();
     co_await GetFilesInFolderAsync(storageFolder);
 }
@@ -68,7 +68,7 @@ IAsyncAction AllNotesModel::GetFilesInFolderAsync(StorageFolder folder)
         note.Title(title);
         note.Text(text);
         note.Date(file.DateCreated());
-        notes.Append(note);
+        Notes().Append(note);
     }
 }
 
