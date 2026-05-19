@@ -5,6 +5,7 @@
 #endif
 
 using namespace winrt::Windows::Foundation;
+using namespace winrt::Microsoft::UI::Windowing;
 using namespace winrt::Microsoft::UI::Xaml;
 using namespace winrt::Microsoft::UI::Xaml::Controls;
 
@@ -17,6 +18,11 @@ MainWindow::MainWindow()
 {
     // Xaml objects should not call InitializeComponent during construction.
     // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
+
+    const OverlappedPresenter presenter = OverlappedPresenter::Create();
+    presenter.PreferredMinimumWidth(600);
+    presenter.PreferredMinimumHeight(400);
+    AppWindow().SetPresenter(presenter);
 
     ExtendsContentIntoTitleBar(true);
     SetTitleBar(AppTitleBar());
