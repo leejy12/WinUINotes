@@ -1,13 +1,21 @@
-#include "pch.h"
+import winrt.Windows.Foundation;
+import winrt.Windows.Storage;
+import winrt.Microsoft.UI.Xaml;
+import winrt.Microsoft.UI.Xaml.Controls;
+using namespace winrt::Windows::Foundation;
+using namespace winrt::Windows::Storage;
+using namespace winrt::Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml::Controls;
+
+import std;
+
+#define WINRT_IMPORT_MODULE
+
 #include "AllNotesPage.xaml.h"
 #if __has_include("Views/AllNotesPage.g.cpp")
 #include "Views/AllNotesPage.g.cpp"
 #endif
 
-using namespace winrt::Windows::Foundation;
-using namespace winrt::Windows::Storage;
-using namespace winrt::Microsoft::UI::Xaml;
-using namespace winrt::Microsoft::UI::Xaml::Controls;
 using namespace winrt::WinUINotes::Models;
 
 // To learn more about WinUI, the WinUI project structure,

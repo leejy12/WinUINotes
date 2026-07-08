@@ -1,13 +1,20 @@
-#include "pch.h"
-#include "AllNotesModel.h"
-#if __has_include("Models/AllNotesModel.g.cpp")
-#include "Models/AllNotesModel.g.cpp"
-#endif
-
+import winrt.Windows.Foundation;
+import winrt.Windows.Foundation.Collections;
+import winrt.Windows.Storage;
+import winrt.Windows.Storage.FileProperties;
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Foundation::Collections;
 using namespace winrt::Windows::Storage;
 using namespace winrt::Windows::Storage::FileProperties;
+
+import std;
+
+#define WINRT_IMPORT_MODULE
+
+#include "AllNotesModel.h"
+#if __has_include("Models/AllNotesModel.g.cpp")
+#include "Models/AllNotesModel.g.cpp"
+#endif
 
 namespace winrt::WinUINotes::Models::implementation
 {

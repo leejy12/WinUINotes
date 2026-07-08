@@ -1,5 +1,14 @@
 #pragma once
 
+import winrt.Windows.Foundation;
+import winrt.Windows.Storage;
+
+#include <wil/cppwinrt.h>
+#include <wil/cppwinrt_helpers.h>
+#include <wil/cppwinrt_authoring.h>
+
+#define WINRT_IMPORT_MODULE
+
 #include "Models/NoteModel.h"
 
 #include "Models/AllNotesModel.g.h"

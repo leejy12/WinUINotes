@@ -1,13 +1,19 @@
-#include "pch.h"
+import winrt.Windows.Foundation;
+import winrt.Windows.Storage;
+import winrt.Windows.Globalization.DateTimeFormatting;
+using namespace winrt::Windows::Foundation;
+using namespace winrt::Windows::Storage;
+using namespace winrt::Windows::Globalization::DateTimeFormatting;
+
+import std;
+
+#define WINRT_IMPORT_MODULE
+
 #include "NoteModel.h"
 #include "Models/AllNotesModel.h"
 #if __has_include("Models/NoteModel.g.cpp")
 #include "Models/NoteModel.g.cpp"
 #endif
-
-using namespace winrt::Windows::Foundation;
-using namespace winrt::Windows::Storage;
-using namespace winrt::Windows::Globalization::DateTimeFormatting;
 
 namespace winrt::WinUINotes::Models::implementation
 {

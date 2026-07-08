@@ -1,15 +1,22 @@
-#include "pch.h"
+import winrt.Windows.Foundation;
+import winrt.Microsoft.UI.Xaml;
+import winrt.Microsoft.UI.Xaml.Controls;
+import winrt.Microsoft.UI.Xaml.Navigation;
+using namespace winrt::Windows::Foundation;
+using namespace winrt::Microsoft::UI::Xaml;
+using namespace winrt::Microsoft::UI::Xaml::Controls;
+using namespace winrt::Microsoft::UI::Xaml::Navigation;
+
+import std;
+
+#define WINRT_IMPORT_MODULE
+
 #include "NotePage.xaml.h"
 #if __has_include("Views/NotePage.g.cpp")
 #include "Views/NotePage.g.cpp"
 #endif
 
-using namespace winrt;
-using namespace Windows::Foundation;
-using namespace Microsoft::UI::Xaml;
-using namespace Microsoft::UI::Xaml::Controls;
-using namespace Microsoft::UI::Xaml::Navigation;
-using namespace WinUINotes::Models;
+using namespace winrt::WinUINotes::Models;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

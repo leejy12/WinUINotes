@@ -1,5 +1,10 @@
 #pragma once
 
+import winrt.Windows.Foundation;
+import winrt.Microsoft.UI.Xaml.Controls;
+
+#define WINRT_IMPORT_MODULE
+
 #include "MainWindow.g.h"
 
 namespace winrt::WinUINotes::implementation

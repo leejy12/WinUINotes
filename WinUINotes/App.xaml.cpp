@@ -1,9 +1,14 @@
-#include "pch.h"
+#include <Windows.h>
+
+import winrt.Windows.Foundation;
+import winrt.Microsoft.UI.Xaml;
+using namespace winrt::Windows::Foundation;
+using namespace winrt::Microsoft::UI::Xaml;
+
+#define WINRT_IMPORT_MODULE
+
 #include "App.xaml.h"
 #include "MainWindow.xaml.h"
-
-using namespace winrt;
-using namespace Microsoft::UI::Xaml;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
