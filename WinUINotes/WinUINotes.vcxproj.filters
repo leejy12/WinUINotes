@@ -14,12 +14,11 @@
     <Midl Include="Models\AllNotesModel.idl" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="Models\AllNotesModel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pch.h" />
+    <ClInclude Include="ModulePreamble.h" />
     <ClInclude Include="Models\AllNotesModel.h" />
   </ItemGroup>
   <ItemGroup>

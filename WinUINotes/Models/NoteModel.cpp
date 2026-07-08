@@ -1,13 +1,14 @@
-#include "pch.h"
+#include "../ModulePreamble.h"
+
+using namespace winrt::Windows::Foundation;
+using namespace winrt::Windows::Storage;
+using namespace winrt::Windows::Globalization::DateTimeFormatting;
+
 #include "NoteModel.h"
 #include "Models/AllNotesModel.h"
 #if __has_include("Models/NoteModel.g.cpp")
 #include "Models/NoteModel.g.cpp"
 #endif
-
-using namespace winrt::Windows::Foundation;
-using namespace winrt::Windows::Storage;
-using namespace winrt::Windows::Globalization::DateTimeFormatting;
 
 namespace winrt::WinUINotes::Models::implementation
 {

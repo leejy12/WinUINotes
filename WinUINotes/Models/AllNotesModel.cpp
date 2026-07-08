@@ -1,13 +1,14 @@
-#include "pch.h"
-#include "AllNotesModel.h"
-#if __has_include("Models/AllNotesModel.g.cpp")
-#include "Models/AllNotesModel.g.cpp"
-#endif
+#include "../ModulePreamble.h"
 
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Foundation::Collections;
 using namespace winrt::Windows::Storage;
 using namespace winrt::Windows::Storage::FileProperties;
+
+#include "AllNotesModel.h"
+#if __has_include("Models/AllNotesModel.g.cpp")
+#include "Models/AllNotesModel.g.cpp"
+#endif
 
 namespace winrt::WinUINotes::Models::implementation
 {

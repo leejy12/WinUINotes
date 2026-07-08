@@ -1,13 +1,15 @@
-#include "pch.h"
-#include "AllNotesPage.xaml.h"
-#if __has_include("Views/AllNotesPage.g.cpp")
-#include "Views/AllNotesPage.g.cpp"
-#endif
+#include "../ModulePreamble.h"
 
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Storage;
 using namespace winrt::Microsoft::UI::Xaml;
 using namespace winrt::Microsoft::UI::Xaml::Controls;
+
+#include "AllNotesPage.xaml.h"
+#if __has_include("Views/AllNotesPage.g.cpp")
+#include "Views/AllNotesPage.g.cpp"
+#endif
+
 using namespace winrt::WinUINotes::Models;
 
 // To learn more about WinUI, the WinUI project structure,
