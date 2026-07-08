@@ -100,8 +100,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</TreatWarningAsError>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</TreatWarningAsError>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</TreatWarningAsError>
       <BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</BuildStlModules>
       <BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</BuildStlModules>
     </ClCompile>
@@ -109,8 +109,8 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</TreatWarningAsError>
-      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</TreatWarningAsError>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</TreatWarningAsError>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</TreatWarningAsError>
       <BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</BuildStlModules>
       <BuildStlModules Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</BuildStlModules>
     </ClCompile>
@@ -233,31 +233,17 @@
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <Target Name="InjectModuleImportsIntoXamlGenerated"
-          AfterTargets="ComputeXamlGeneratedCompileInputs"
-          BeforeTargets="ClCompile">
+  <Target Name="InjectModuleImportsIntoXamlGenerated" AfterTargets="ComputeXamlGeneratedCompileInputs" BeforeTargets="ClCompile">
     <ItemGroup>
-      <ClCompile Update="@(ClCompile)"
-                 Condition="'%(Filename)' == 'XamlTypeInfo.g'
-                         or '%(Filename)' == 'XamlTypeInfo.Impl.g'
-                         or '%(Filename)' == 'XamlMetaDataProvider'
-                         or '%(Filename)' == 'XamlMetaDataProvider.g'
-                         or '%(Filename)' == 'XamlLibMetadataProvider.g'">
+      <ClCompile Update="@(ClCompile)" Condition="'%(Filename)' == 'XamlTypeInfo.g'&#xA;                         or '%(Filename)' == 'XamlTypeInfo.Impl.g'&#xA;                         or '%(Filename)' == 'XamlMetaDataProvider'&#xA;                         or '%(Filename)' == 'XamlMetaDataProvider.g'&#xA;                         or '%(Filename)' == 'XamlLibMetadataProvider.g'">
         <PrecompiledHeader>NotUsing</PrecompiledHeader>
         <ForcedIncludeFiles>$(MSBuildProjectDirectory)\ModulePreamble.h</ForcedIncludeFiles>
       </ClCompile>
     </ItemGroup>
   </Target>
-  <Target Name="InjectModuleImportsIntoXamlGeneratedPass2"
-          AfterTargets="ComputeXamlGeneratedCompileInputs"
-          BeforeTargets="CompileXamlGeneratedFiles">
+  <Target Name="InjectModuleImportsIntoXamlGeneratedPass2" AfterTargets="ComputeXamlGeneratedCompileInputs" BeforeTargets="CompileXamlGeneratedFiles">
     <ItemGroup>
-      <ClCompile Update="@(ClCompile)"
-                 Condition="'%(Filename)' == 'XamlTypeInfo.g'
-                         or '%(Filename)' == 'XamlTypeInfo.Impl.g'
-                         or '%(Filename)' == 'XamlMetaDataProvider'
-                         or '%(Filename)' == 'XamlMetaDataProvider.g'
-                         or '%(Filename)' == 'XamlLibMetadataProvider.g'">
+      <ClCompile Update="@(ClCompile)" Condition="'%(Filename)' == 'XamlTypeInfo.g'&#xA;                         or '%(Filename)' == 'XamlTypeInfo.Impl.g'&#xA;                         or '%(Filename)' == 'XamlMetaDataProvider'&#xA;                         or '%(Filename)' == 'XamlMetaDataProvider.g'&#xA;                         or '%(Filename)' == 'XamlLibMetadataProvider.g'">
         <PrecompiledHeader>NotUsing</PrecompiledHeader>
         <ForcedIncludeFiles>$(MSBuildProjectDirectory)\ModulePreamble.h</ForcedIncludeFiles>
       </ClCompile>
