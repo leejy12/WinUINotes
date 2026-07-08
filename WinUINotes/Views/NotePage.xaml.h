@@ -1,11 +1,5 @@
 #pragma once
 
-import winrt.Windows.Foundation;
-import winrt.Microsoft.UI.Xaml;
-import winrt.Microsoft.UI.Xaml.Navigation;
-
-#define WINRT_IMPORT_MODULE
-
 #include "Models/NoteModel.h"
 
 #include "Views/NotePage.g.h"

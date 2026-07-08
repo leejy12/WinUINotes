@@ -91,6 +91,7 @@
       <PrecompiledHeaderOutputFile>
       </PrecompiledHeaderOutputFile>
       <WarningLevel>Level4</WarningLevel>
+      <PreprocessorDefinitions>WINRT_ENABLE_LEGACY_COM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard Condition="'$(VisualStudioVersion)' &gt;= '18.0'">stdcpp23</LanguageStandard>
       <LanguageStandard Condition="'$(VisualStudioVersion)' &lt; '18.0'">stdcpp17</LanguageStandard>
       <AdditionalOptions>%(AdditionalOptions) /bigobj /utf-8</AdditionalOptions>
@@ -127,6 +128,7 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ModulePreamble.h" />
     <ClInclude Include="Models\AllNotesModel.h" />
     <ClInclude Include="Models\NoteModel.h">
       <DependentUpon>Models\NoteModel.idl</DependentUpon>
@@ -231,6 +233,36 @@
     <HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <Target Name="InjectModuleImportsIntoXamlGenerated"
+          AfterTargets="ComputeXamlGeneratedCompileInputs"
+          BeforeTargets="ClCompile">
+    <ItemGroup>
+      <ClCompile Update="@(ClCompile)"
+                 Condition="'%(Filename)' == 'XamlTypeInfo.g'
+                         or '%(Filename)' == 'XamlTypeInfo.Impl.g'
+                         or '%(Filename)' == 'XamlMetaDataProvider'
+                         or '%(Filename)' == 'XamlMetaDataProvider.g'
+                         or '%(Filename)' == 'XamlLibMetadataProvider.g'">
+        <PrecompiledHeader>NotUsing</PrecompiledHeader>
+        <ForcedIncludeFiles>$(MSBuildProjectDirectory)\ModulePreamble.h</ForcedIncludeFiles>
+      </ClCompile>
+    </ItemGroup>
+  </Target>
+  <Target Name="InjectModuleImportsIntoXamlGeneratedPass2"
+          AfterTargets="ComputeXamlGeneratedCompileInputs"
+          BeforeTargets="CompileXamlGeneratedFiles">
+    <ItemGroup>
+      <ClCompile Update="@(ClCompile)"
+                 Condition="'%(Filename)' == 'XamlTypeInfo.g'
+                         or '%(Filename)' == 'XamlTypeInfo.Impl.g'
+                         or '%(Filename)' == 'XamlMetaDataProvider'
+                         or '%(Filename)' == 'XamlMetaDataProvider.g'
+                         or '%(Filename)' == 'XamlLibMetadataProvider.g'">
+        <PrecompiledHeader>NotUsing</PrecompiledHeader>
+        <ForcedIncludeFiles>$(MSBuildProjectDirectory)\ModulePreamble.h</ForcedIncludeFiles>
+      </ClCompile>
+    </ItemGroup>
+  </Target>
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\Microsoft.Windows.ImplementationLibrary.1.0.260126.7\build\native\Microsoft.Windows.ImplementationLibrary.targets" Condition="Exists('..\packages\Microsoft.Windows.ImplementationLibrary.1.0.260126.7\build\native\Microsoft.Windows.ImplementationLibrary.targets')" />
     <Import Project="..\packages\Microsoft.Windows.CppWinRT.3.0.260520.1\build\native\Microsoft.Windows.CppWinRT.targets" Condition="Exists('..\packages\Microsoft.Windows.CppWinRT.3.0.260520.1\build\native\Microsoft.Windows.CppWinRT.targets')" />

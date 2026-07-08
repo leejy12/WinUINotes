@@ -1,9 +1,5 @@
 #pragma once
 
-import winrt.Microsoft.UI.Xaml;
-
-#define WINRT_IMPORT_MODULE
-
 #include "App.xaml.g.h"
 
 namespace winrt::WinUINotes::implementation

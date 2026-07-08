@@ -1,11 +1,7 @@
-#include <Windows.h>
+#include "ModulePreamble.h"
 
-import winrt.Windows.Foundation;
-import winrt.Microsoft.UI.Xaml;
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Microsoft::UI::Xaml;
-
-#define WINRT_IMPORT_MODULE
 
 #include "App.xaml.h"
 #include "MainWindow.xaml.h"

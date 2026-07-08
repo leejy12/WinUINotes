@@ -1,13 +1,8 @@
-import winrt.Windows.Foundation;
-import winrt.Windows.Storage;
-import winrt.Windows.Globalization.DateTimeFormatting;
+#include "../ModulePreamble.h"
+
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Storage;
 using namespace winrt::Windows::Globalization::DateTimeFormatting;
-
-import std;
-
-#define WINRT_IMPORT_MODULE
 
 #include "NoteModel.h"
 #include "Models/AllNotesModel.h"

@@ -1,15 +1,9 @@
-import winrt.Windows.Foundation;
-import winrt.Windows.Storage;
-import winrt.Microsoft.UI.Xaml;
-import winrt.Microsoft.UI.Xaml.Controls;
+#include "../ModulePreamble.h"
+
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Windows::Storage;
 using namespace winrt::Microsoft::UI::Xaml;
 using namespace winrt::Microsoft::UI::Xaml::Controls;
-
-import std;
-
-#define WINRT_IMPORT_MODULE
 
 #include "AllNotesPage.xaml.h"
 #if __has_include("Views/AllNotesPage.g.cpp")

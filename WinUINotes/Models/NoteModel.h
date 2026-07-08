@@ -1,9 +1,5 @@
 #pragma once
 
-import winrt.Windows.Foundation;
-
-#define WINRT_IMPORT_MODULE
-
 #include "Models/NoteModel.g.h"
 
 namespace winrt::WinUINotes::Models::implementation

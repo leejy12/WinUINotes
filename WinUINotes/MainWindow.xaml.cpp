@@ -1,14 +1,9 @@
-import winrt.Windows.Foundation;
-import winrt.Microsoft.UI.Windowing;
-import winrt.Microsoft.UI.Xaml;
-import winrt.Microsoft.UI.Xaml.Controls;
+#include "ModulePreamble.h"
 
 using namespace winrt::Windows::Foundation;
 using namespace winrt::Microsoft::UI::Windowing;
 using namespace winrt::Microsoft::UI::Xaml;
 using namespace winrt::Microsoft::UI::Xaml::Controls;
-
-#define WINRT_IMPORT_MODULE
 
 #include "MainWindow.xaml.h"
 #if __has_include("MainWindow.g.cpp")
